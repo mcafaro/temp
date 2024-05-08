@@ -1,26 +1,37 @@
-name: Run MATLAB Commands on GitHub-Hosted Runner
-on: [push]
+name: 'matlab: tests'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+    branches: ['*']
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
 jobs:
-  my-job:
-    name: Run MATLAB Commands
-    runs-on: ubuntu-latest
+  test:
+
+    strategy:
+      fail-fast: false
+      matrix:
+        version: [R2021a, R2023a]
+        os: [macos-latest]
+
+    runs-on: ${{matrix.os}}
+
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
-      # - name: Set up MATLAB
-      #   uses: matlab-actions/setup-matlab@v2
-      - name: Run bash
-        run: echo hello
-      - name: Run some bash
-        run: |
-           echo hello world
-           echo what is happening
-        shell: bash
-      # - name: Run commands
-      #   uses: matlab-actions/run-command@v2
-      #   with:
-      #     command: results = runtests, assertSuccess(results);
-      # - name: Run tests
-      #   uses: matlab-actions/run-tests@v2
-      # - name: Run build
-      #   uses: matlab-actions/run-build@v2
+
+    - name: Install MATLAB
+      uses: matlab-actions/setup-matlab@v2
+      with:
+        release: ${{matrix.version}}
+    - name: Run commands
+      uses: matlab-actions/run-command@v2
+      with:
+        command: results = 1 + 1;
