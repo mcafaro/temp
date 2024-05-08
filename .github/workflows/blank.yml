@@ -31,7 +31,7 @@ jobs:
       uses: matlab-actions/setup-matlab@v2
       with:
         release: ${{matrix.version}}
-        products: |
+        products: >
           Optimization_Toolbox
           Statistics_and_Machine_Learning_Toolbox
     - name: Run commands
