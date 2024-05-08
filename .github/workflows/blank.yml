@@ -7,15 +7,20 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
-      - name: Set up MATLAB
-        uses: matlab-actions/setup-matlab@v2
+      # - name: Set up MATLAB
+      #   uses: matlab-actions/setup-matlab@v2
       - name: Run bash
         run: echo hello
-      - name: Run commands
-        uses: matlab-actions/run-command@v2
-        with:
-          command: results = runtests, assertSuccess(results);
-      - name: Run tests
-        uses: matlab-actions/run-tests@v2
-      - name: Run build
-        uses: matlab-actions/run-build@v2
+      - name: Run some bash
+        run: |
+           echo hello world
+           echo what is happening
+        shell: bash
+      # - name: Run commands
+      #   uses: matlab-actions/run-command@v2
+      #   with:
+      #     command: results = runtests, assertSuccess(results);
+      # - name: Run tests
+      #   uses: matlab-actions/run-tests@v2
+      # - name: Run build
+      #   uses: matlab-actions/run-build@v2
