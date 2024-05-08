@@ -20,7 +20,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        version: [R2021a, R2023a]
+        version: [R2021a, R2023a, R2023b, latest]
         os: [macos-latest]
 
     runs-on: ${{matrix.os}}
