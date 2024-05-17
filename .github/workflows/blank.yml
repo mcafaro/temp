@@ -1,40 +1,24 @@
-name: 'matlab: tests'
-
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
-
-on:
-  push:
-    branches:
-    - main
-  pull_request:
-    branches: ['*']
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
+name: Run MATLAB Statements
+on: [push]
 jobs:
-  test:
-
-    strategy:
-      fail-fast: false
-      matrix:
-        version: [latest]
-        os: [macos-latest]
-
-    runs-on: ${{matrix.os}}
-
+  my-job:
+    name: Run MATLAB Statements
+    runs-on: ubuntu-latest
     steps:
-
-    - name: Install MATLAB
-      uses: matlab-actions/setup-matlab@v2
-      with:
-        release: ${{matrix.version}}
-        products: >-
-          Optimization_Toolbox
-          Statistics_and_Machine_Learning_Toolbox
-    - name: Run commands
-      uses: matlab-actions/run-command@v2
-      with:
-        command: results = 1 + 1;
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up MATLAB
+        uses: matlab-actions/setup-matlab@v2
+      - name: Run command
+        uses: matlab-actions/run-command@v2
+        with:
+          command: pwd
+          startup-options: -sd subfolder
+      - name: Run tests
+        uses: matlab-actions/run-tests@v2
+        with:
+          startup-options: -sd subfolder
+      - name: Run build
+        uses: matlab-actions/run-build@v2
+        with:
+          startup-options: -sd subfolder
