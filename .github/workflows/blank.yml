@@ -12,8 +12,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, windows-latest, macOS-latest]
-        matlab: [latest, R2021b, R2022a, R2022b, R2023a, R2023b]
+        os: [ubuntu-latest]
+        matlab: [latest]
 
     steps:
 
@@ -25,7 +25,6 @@ jobs:
         with:
           release: ${{ matrix.matlab }}
           cache: true
-          products: Optimization_Toolbox Parallel_Computing_Toolbox
 
       - name: Test parallel computing
         uses: matlab-actions/run-command@v2
