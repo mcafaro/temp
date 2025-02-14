@@ -12,7 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, ubuntu-22.04]
+        os: [ubuntu-latest]
         matlab: [R2022b]
 
     steps:
@@ -20,11 +20,8 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Print mesa
-        shell: bash
-        run: |
-          dpkg -l | grep gallium
-          apt-cache showpkg libgallium
+      - name: Setup upterm session
+        uses: lhotari/action-upterm@v1
 
       # - name: Set up MATLAB with optimization toolbox and parallel computing toolbox
       #   uses: matlab-actions/setup-matlab@v2
