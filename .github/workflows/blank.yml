@@ -22,7 +22,9 @@ jobs:
 
       - name: Print mesa
         shell: bash
-        run: dpkg -l | grep mesa
+        run: |
+          dpkg -l | grep gallium
+          apt-cache showpkg libgallium
 
       # - name: Set up MATLAB with optimization toolbox and parallel computing toolbox
       #   uses: matlab-actions/setup-matlab@v2
