@@ -20,9 +20,9 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Attempt to download MPM
+      - name: Attempt to cURL MPM
         shell: bash
-        run: wget --server-response --debug https://www.mathworks.com/mpm/glnxa64/mpm
+        run: curl -Lv https://www.mathworks.com/mpm/glnxa64/mpm
 
       # - name: Set up MATLAB with optimization toolbox and parallel computing toolbox
       #   uses: matlab-actions/setup-matlab@v2
