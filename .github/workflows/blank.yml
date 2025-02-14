@@ -12,7 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        os: [ubuntu-latest, ubuntu-22.04]
         matlab: [R2022b]
 
     steps:
@@ -20,9 +20,9 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Attempt to cURL MPM
+      - name: Print mesa
         shell: bash
-        run: curl -Lvo mpm https://www.mathworks.com/mpm/glnxa64/mpm
+        run: dpkg -l | grep mesa
 
       # - name: Set up MATLAB with optimization toolbox and parallel computing toolbox
       #   uses: matlab-actions/setup-matlab@v2
