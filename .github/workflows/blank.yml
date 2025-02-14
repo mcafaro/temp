@@ -22,7 +22,7 @@ jobs:
 
       - name: Attempt to cURL MPM
         shell: bash
-        run: curl -Lv https://www.mathworks.com/mpm/glnxa64/mpm
+        run: curl -Lvo mpm https://www.mathworks.com/mpm/glnxa64/mpm
 
       # - name: Set up MATLAB with optimization toolbox and parallel computing toolbox
       #   uses: matlab-actions/setup-matlab@v2
