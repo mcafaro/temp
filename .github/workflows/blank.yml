@@ -12,7 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest]
+        os: [ubuntu-22.04, ubuntu-latest]
         matlab: [R2022b]
 
     steps:
@@ -20,8 +20,10 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Setup upterm session
-        uses: lhotari/action-upterm@v1
+      - run: gcc --version
+
+      # - name: Setup upterm session
+      #   uses: lhotari/action-upterm@v1
 
       # - name: Set up MATLAB with optimization toolbox and parallel computing toolbox
       #   uses: matlab-actions/setup-matlab@v2
