@@ -12,26 +12,23 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-22.04, ubuntu-latest]
-        matlab: [R2022b]
+        os: [ubuntu-22.04]
+        matlab: [R2022a,R2022b,R2023a,R2023b,R2024a,R2024b]
 
     steps:
 
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - run: gcc --version
-
       # - name: Setup upterm session
       #   uses: lhotari/action-upterm@v1
 
-      # - name: Set up MATLAB with optimization toolbox and parallel computing toolbox
-      #   uses: matlab-actions/setup-matlab@v2
-      #   with:
-      #     release: ${{ matrix.matlab }}
-      #     products: Parallel_Computing_Toolbox
+      - name: Set up MATLAB
+        uses: matlab-actions/setup-matlab@v2
+        with:
+          release: ${{ matrix.matlab }}
 
-      # - name: Test parallel computing
-      #   uses: matlab-actions/run-command@v2
-      #   with:
-      #     command: p = gcp(); p.NumWorkers
+      - name: Test javachk
+        uses: matlab-actions/run-command@v2
+        with:
+          command: javachk('swing')
