@@ -9,11 +9,11 @@ jobs:
     name: MATLAB ${{ matrix.matlab }} on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
 
-    # strategy:
-    #   fail-fast: false
-    #   matrix:
-    #     os: [ubuntu-22.04]
-    #     matlab: [R2022a,R2022b,R2023a,R2023b,R2024a,R2024b]
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-22.04]
+        matlab: [R2025a] # [R2022a,R2022b,R2023a,R2023b,R2024a,R2024b]
 
     steps:
 
