@@ -12,7 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-22.04,macos-latest,windows-latest]
+        os: [ubuntu-22.04,macos-13,windows-latest]
         matlab: [R2020b,R2021a,R2021b,R2022a,R2022b,R2023a,R2023b,R2024a,R2024b,R2025a]
 
     steps:
@@ -24,6 +24,11 @@ jobs:
         uses: matlab-actions/setup-matlab@v1
         with:
           release: ${{ matrix.matlab }}
+
+      - name: Run MATLAB
+        uses: matlab-actions/run-command@v2
+        with:
+          command: disp('hello world')
 
       # - name: Test javachk
       #   uses: matlab-actions/run-command@v2
