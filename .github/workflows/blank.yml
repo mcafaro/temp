@@ -26,7 +26,7 @@ jobs:
           release: ${{ matrix.matlab }}
 
       - name: Run MATLAB
-        uses: matlab-actions/run-command@v2
+        uses: matlab-actions/run-command@v1
         with:
           command: disp('hello world')
 
